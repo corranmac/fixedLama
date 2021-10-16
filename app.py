@@ -15,6 +15,7 @@ torch.hub.download_url_to_file('https://cdn.pixabay.com/photo/2016/10/21/14/46/f
 model = hub.Module(name='U2Net')
 def infer(img):
   img.save("./data/data.png")
+  os.system("ls data")
   result = model.Segmentation(
       images=[cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)],
       paths=None,
@@ -24,7 +25,9 @@ def infer(img):
       visualization=True)
   im = Image.fromarray(result[0]['mask'])
   im.save("./data/data_mask.png")
+  os.system("ls data")
   os.system('python predict.py model.path=/home/user/app/big-lama/ indir=./data outdir=./dataout device=cpu')
+  os.system("ls dataout")
   return "./dataout/data_mask.png"
 inputs = gr.inputs.Image(type='pil', label="Original Image")
 outputs = gr.outputs.Image(type="file",label="output")
