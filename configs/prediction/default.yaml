@@ -10,5 +10,5 @@ dataset:
   img_suffix: .png
   pad_out_to_modulo: 8
 
-device: cuda
+device: cpu
 out_key: inpainted
