@@ -26,7 +26,7 @@ def infer(img):
   im = Image.fromarray(result[0]['mask'])
   im.save("./data/data_mask.png")
   os.system("ls data")
-  os.system('python predict.py model.path=/home/user/app/big-lama/ indir=./data outdir=./dataout device=cpu')
+  os.system('python predict.py model.path=/home/user/app/big-lama/ indir=/home/user/app/data/ outdir=/home/user/app/dataout/ device=cpu')
   os.system("ls dataout")
   return "./dataout/data_mask.png"
 inputs = gr.inputs.Image(type='pil', label="Original Image")
