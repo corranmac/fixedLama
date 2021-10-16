@@ -1,4 +1,6 @@
 import os
+os.system("gdown https://drive.google.com/uc?id=1-95IOJ-2y9BtmABiffIwndPqNZD_gLnV")
+os.system("unzip big-lama.zip")
 import cv2
 import paddlehub as hub
 import gradio as gr
