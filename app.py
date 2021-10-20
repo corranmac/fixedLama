@@ -16,7 +16,7 @@ def infer(img,mask,option):
   hsize = int((float(img.size[1])*float(wpercent)))
   img = img.resize((basewidth,hsize), Image.ANTIALIAS)
   img.save("./data/data.png")
-  if option == "automatic (U2net)"
+  if option == "automatic (U2net)":
       result = model.Segmentation(
           images=[cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)],
           paths=None,
