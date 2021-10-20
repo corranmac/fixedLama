@@ -11,10 +11,9 @@ os.mkdir("data")
 os.mkdir("dataout")
 model = hub.Module(name='U2Net')
 def infer(img,mask,option):
-  basewidth = 600
-  wpercent = (basewidth/float(img.size[0]))
-  hsize = int((float(img.size[1])*float(wpercent)))
-  img = img.resize((basewidth,hsize), Image.ANTIALIAS)
+  img = img.resize((600,600))   # image resizing
+    
+  mask = mask.resize((600,600))
   img.save("./data/data.png")
   if option == "automatic (U2net)":
       result = model.Segmentation(
