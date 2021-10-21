@@ -5,7 +5,7 @@ import cv2
 import paddlehub as hub
 import gradio as gr
 import torch
-from PIL import Image
+from PIL import Image, ImageOps
 import numpy as np
 os.mkdir("data")
 os.mkdir("dataout")
