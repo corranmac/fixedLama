@@ -14,7 +14,6 @@ model = hub.Module(name='U2Net')
 def infer(img,mask,option):
   img = ImageOps.contain(img, (700,700))
   width, height = img.size
-  mask = mask.resize((width,height))
   img.save("./data/data.png")
   if option == "automatic (U2net)":
       result = model.Segmentation(
@@ -26,6 +25,7 @@ def infer(img,mask,option):
           visualization=True)
       im = Image.fromarray(result[0]['mask'])
   else:
+      mask = mask.resize((width,height))
       im = mask
   im.save("./data/data_mask.png")
   os.system('python predict.py model.path=/home/user/app/big-lama/ indir=/home/user/app/data/ outdir=/home/user/app/dataout/ device=cpu')
