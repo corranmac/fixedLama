@@ -30,6 +30,7 @@ def infer(img,mask,option):
   im.save("./data/data_mask.png")
   os.system('python predict.py model.path=/home/user/app/big-lama/ indir=/home/user/app/data/ outdir=/home/user/app/dataout/ device=cpu')
   return "./dataout/data_mask.png",im
+  
 inputs = [gr.inputs.Image(type='pil', label="Original Image"),gr.inputs.Image(type='pil',source="canvas", label="Mask",optional=True,invert_colors=True),gr.inputs.Radio(choices=["automatic (U2net)","manual"], type="value", default="manual", label="Masking option")]
 outputs = [gr.outputs.Image(type="file",label="output"),gr.outputs.Image(type="pil",label="Mask")]
 title = "LaMa Image Inpainting"
