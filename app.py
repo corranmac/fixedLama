@@ -1,7 +1,6 @@
 import os
 os.system("gdown https://drive.google.com/uc?id=1-95IOJ-2y9BtmABiffIwndPqNZD_gLnV")
 os.system("unzip big-lama.zip")
-os.system("pip install gradio==2.3.7")
 import cv2
 import paddlehub as hub
 import gradio as gr
@@ -40,4 +39,4 @@ examples = [
   ['person512.png',None,"automatic (U2net)"],
   ['person512.png',"maskexam.png","manual"]
 ]
-gr.Interface(infer, inputs, outputs, title=title, description=description, article=article, examples=examples, enable_queue=True).launch()
+gr.Interface(infer, inputs, outputs, title=title, description=description, article=article, examples=examples).launch(enable_queue=True,cache_examples=True)
