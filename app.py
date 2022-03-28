@@ -7,7 +7,6 @@ import torch
 from PIL import Image, ImageOps
 import numpy as np
 os.mkdir("data")
-os.mkdir("models")
 os.rename("best.ckpt", "models/best.ckpt")
 os.mkdir("dataout")
 model = hub.Module(name='U2Net')
