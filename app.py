@@ -1,6 +1,5 @@
 import os
-os.system("gdown https://drive.google.com/uc?id=1-95IOJ-2y9BtmABiffIwndPqNZD_gLnV")
-os.system("unzip big-lama.zip")
+os.system("wget https://huggingface.co/akhaliq/lama/resolve/main/best.ckpt")
 import cv2
 import paddlehub as hub
 import gradio as gr
@@ -8,6 +7,8 @@ import torch
 from PIL import Image, ImageOps
 import numpy as np
 os.mkdir("data")
+os.mkdir("models")
+os.rename("best.ckpt", "models/best.ckpt")
 os.mkdir("dataout")
 model = hub.Module(name='U2Net')
 def infer(img,mask,option):
@@ -27,7 +28,7 @@ def infer(img,mask,option):
       mask = mask.resize((width,height))
       im = mask
   im.save("./data/data_mask.png")
-  os.system('python predict.py model.path=/home/user/app/big-lama/ indir=/home/user/app/data/ outdir=/home/user/app/dataout/ device=cpu')
+  os.system('python predict.py model.path=/home/user/app/ indir=/home/user/app/data/ outdir=/home/user/app/dataout/ device=cpu')
   return "./dataout/data_mask.png",im
   
 inputs = [gr.inputs.Image(type='pil', label="Original Image"),gr.inputs.Image(type='pil',source="canvas", label="Mask",invert_colors=True),gr.inputs.Radio(choices=["automatic (U2net)","manual"], type="value", default="manual", label="Masking option")]
