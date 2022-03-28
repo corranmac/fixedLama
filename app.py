@@ -1,5 +1,6 @@
 import os
 os.system("wget https://huggingface.co/akhaliq/lama/resolve/main/best.ckpt")
+
 import cv2
 import paddlehub as hub
 import gradio as gr
