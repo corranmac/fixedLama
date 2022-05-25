@@ -40,4 +40,4 @@ examples = [
   ['person512.png',"canvas.png","automatic (U2net)"],
   ['person512.png',"maskexam.png","manual"]
 ]
-gr.Interface(infer, inputs, outputs, title=title, description=description, article=article, examples=examples).launch(enable_queue=True,cache_examples=True)
+gr.Interface(infer, inputs, outputs, title=title, description=description, article=article, examples=examples).launch()
