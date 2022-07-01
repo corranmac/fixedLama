@@ -41,4 +41,4 @@ examples = [
   ['person512.png',"automatic (U2net)"],
   ['person512.png',"manual"]
 ]
-gr.Interface(infer, inputs, outputs, title=title, description=description, article=article, examples=examples,cache_examples=False).launch()
+gr.Interface(infer, inputs, outputs, title=title, description=description, article=article, examples=examples).launch()
