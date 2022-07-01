@@ -16,7 +16,6 @@ def infer(img,option):
   print(type(img))
   print(type(img["image"]))
   print(type(img["mask"]))
-  print(type(Image.fromarray(img["image"]))
   imageio.imwrite("./data/data.png", img["image"])
   if option == "automatic (U2net)":
       result = model.Segmentation(
