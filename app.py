@@ -1,12 +1,13 @@
 import os
 os.system("wget https://huggingface.co/akhaliq/lama/resolve/main/best.ckpt")
-
+os.system("pip install imageio")
 import cv2
 import paddlehub as hub
 import gradio as gr
 import torch
 from PIL import Image, ImageOps
 import numpy as np
+import imageio
 os.mkdir("data")
 os.rename("best.ckpt", "models/best.ckpt")
 os.mkdir("dataout")
@@ -16,11 +17,7 @@ def infer(img,option):
   print(type(img["image"]))
   print(type(img["mask"]))
   print(type(Image.fromarray(img["image"]))
-  img = Image.fromarray(img["image"])
-  mask = Image.fromarray(img["mask"])
-  img = ImageOps.contain(img, (700,700))
-  width, height = img.size
-  img.save("./data/data.png")
+  imageio.imwrite("./data/data.png", img["image"])
   if option == "automatic (U2net)":
       result = model.Segmentation(
           images=[cv2.cvtColor(img["image"], cv2.COLOR_RGB2BGR)],
@@ -30,9 +27,9 @@ def infer(img,option):
           output_dir='output',
           visualization=True)
       im = Image.fromarray(result[0]['mask'])
+      im.save("./data/data_mask.png")
   else:
-      mask = mask.resize((width,height))
-  mask.save("./data/data_mask.png")
+      imageio.imwrite("./data/data_mask.png", img["mask"])
   os.system('python predict.py model.path=/home/user/app/ indir=/home/user/app/data/ outdir=/home/user/app/dataout/ device=cpu')
   return "./dataout/data_mask.png",mask
   
