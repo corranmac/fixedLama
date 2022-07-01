@@ -15,6 +15,7 @@ def infer(img,option):
   print(type(img))
   print(type(img["image"]))
   print(type(img["mask"]))
+  print(type(Image.fromarray(img["image"]))
   img = Image.fromarray(img["image"])
   mask = Image.fromarray(img["mask"])
   img = ImageOps.contain(img, (700,700))
